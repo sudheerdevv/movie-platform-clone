@@ -1,21 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import LibraryScreen from "./screens/LibraryScreen";
+import MovieScreen from "./screens/MovieScreen";
+import SearchScreen from "./screens/SearchScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
-export default function App() {
+//Creating stack for the screens
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          initialParams={{ transition: "fade" }}
+          name="Login"
+          component={LoginScreen}
+        />
+        <Stack.Screen
+          options={{ animation: "slide_from_right" }}
+          name="Register"
+          component={RegisterScreen}
+        />
+        <Stack.Screen
+          options={{ animation: "slide_from_right" }}
+          name="Home"
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          options={{ animation: "slide_from_right" }}
+          name="Library"
+          component={LibraryScreen}
+        />
+        <Stack.Screen
+          options={{ animation: "slide_from_right" }}
+          name="Movie"
+          component={MovieScreen}
+        />
+        <Stack.Screen
+          options={{ animation: "slide_from_right" }}
+          name="Search"
+          component={SearchScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
